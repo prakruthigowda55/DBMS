@@ -1,0 +1,21 @@
+show databases;
+use university;
+show tables;
+select*from student;
+alter table student add fees int default 30000;
+select*from faculty;
+select*from course;
+select*from enroll;
+insert into enroll values(101,'toc');
+insert into enroll values(102,'mat');
+insert into enroll values(103,'se');
+insert into enroll values(104,'pyt');
+select sname,major from student;
+select s.snum,s.sname,s.major from student s, enroll e where e.snum=s.snum and e.cname='mat';
+select c.cname,f.fname from course c,faculty f where c.fid=f.fid;
+select s.snum,s.sname,c.cname from student s, enroll e,course c,faculty f where s.snum= e.snum and e.cname=c.cname and c.fid=f.fid and f.fname='amm';
+select major,count(*) as total_students from student group by major;
+select s.snum,s.sname from student s left join enroll e on s.snum=e.snum where e.snum is null;
+select f.fid,f.fname from faculty f left join course c on f.fid=c.fid where c.fid is null;
+select snum from enroll group by snum having count(cname)>1;
+
